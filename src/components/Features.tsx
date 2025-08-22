@@ -11,6 +11,17 @@ const Features: React.FC = () => {
     const stepsFade = useFadeIn({ delay: 600 });
     const buttonFade = useFadeIn({ delay: 800 });
 
+    // Safari fallback styles
+    const safariBackgroundStyle = {
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        border: '1px solid rgba(255, 255, 255, 0.3)'
+    };
+
+    const safariCardStyle = {
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        border: '1px solid rgba(255, 255, 255, 0.2)'
+    };
+
     const freeContent = {
         title: "Como funciona na prática? - Sem Plano",
         subtitle: "Processo simples e direto para começar seu tratamento",
@@ -70,7 +81,7 @@ const Features: React.FC = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Switch Toggle */}
                     <div className="flex justify-center mb-12">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 border border-white/30">
+                        <div className="rounded-full p-2" style={safariBackgroundStyle}>
                             <div className="flex">
                                 <button
                                     onClick={() => setActiveTab('free')}
@@ -117,7 +128,7 @@ const Features: React.FC = () => {
                         className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
                     >
                         {currentContent.steps.map((step, index) => (
-                            <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20">
+                            <div key={index} className="rounded-2xl p-8 text-center" style={safariCardStyle}>
                                 <h3 className="text-3xl font-bold text-white mb-4">{step.title}</h3>
                                 <p className="text-white leading-relaxed">
                                     {step.description}
@@ -178,7 +189,7 @@ const Features: React.FC = () => {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Switch Toggle */}
                 <div className="flex justify-center mb-12">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 border border-white/30">
+                    <div className="rounded-full p-2" style={safariBackgroundStyle}>
                         <div className="flex">
                             <button
                                 onClick={() => setActiveTab('free')}
@@ -225,7 +236,7 @@ const Features: React.FC = () => {
                     className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
                 >
                     {currentContent.steps.map((step, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20">
+                        <div key={index} className="rounded-2xl p-8 text-center" style={safariCardStyle}>
                             <h3 className="text-3xl font-bold text-white mb-4">{step.title}</h3>
                             <p className="text-white leading-relaxed">
                                 {step.description}
