@@ -6,10 +6,9 @@ import { useFadeIn } from '../hooks/useFadeIn';
 const Features: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'free' | 'premium'>('free');
     
-    const titleFade = useFadeIn({ delay: 200 });
-    const cardsFade = useFadeIn({ delay: 400 });
-    const stepsFade = useFadeIn({ delay: 600 });
-    const buttonFade = useFadeIn({ delay: 800 });
+    // Animações mais simples e confiáveis
+    const titleFade = useFadeIn({ delay: 100, threshold: 0.05 });
+    const cardsFade = useFadeIn({ delay: 200, threshold: 0.05 });
 
     // Safari fallback styles
     const safariBackgroundStyle = {
@@ -111,7 +110,7 @@ const Features: React.FC = () => {
                     <div 
                         ref={titleFade.ref}
                         style={titleFade.style}
-                        className="text-center mb-16"
+                        className="text-center mb-16 fade-in-content"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             {currentContent.title}
@@ -125,7 +124,7 @@ const Features: React.FC = () => {
                     <div 
                         ref={cardsFade.ref}
                         style={cardsFade.style}
-                        className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
+                        className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12 fade-in-content"
                     >
                         {currentContent.steps.map((step, index) => (
                             <div key={index} className="rounded-2xl p-8 text-center" style={safariCardStyle}>
@@ -219,7 +218,7 @@ const Features: React.FC = () => {
                 <div 
                     ref={titleFade.ref}
                     style={titleFade.style}
-                    className="text-center mb-16"
+                    className="text-center mb-16 fade-in-content"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         {currentContent.title}
@@ -233,7 +232,7 @@ const Features: React.FC = () => {
                 <div 
                     ref={cardsFade.ref}
                     style={cardsFade.style}
-                    className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
+                    className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12 fade-in-content"
                 >
                     {currentContent.steps.map((step, index) => (
                         <div key={index} className="rounded-2xl p-8 text-center" style={safariCardStyle}>

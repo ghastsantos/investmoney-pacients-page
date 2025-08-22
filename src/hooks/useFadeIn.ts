@@ -16,14 +16,24 @@ export const useFadeIn = (options: UseFadeInOptions = {}) => {
   } = options;
 
   const [isVisible, setIsVisible] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(false);
   const ref = useRef<any>(null);
 
   useEffect(() => {
+    // Fallback para garantir que elementos sejam visíveis após um tempo
+    const fallbackTimer = setTimeout(() => {
+      if (!hasTriggered) {
+        setIsVisible(true);
+        setHasTriggered(true);
+      }
+    }, 3000);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasTriggered) {
           setTimeout(() => {
             setIsVisible(true);
+            setHasTriggered(true);
           }, delay);
         }
       },
@@ -38,11 +48,12 @@ export const useFadeIn = (options: UseFadeInOptions = {}) => {
     }
 
     return () => {
+      clearTimeout(fallbackTimer);
       if (ref.current) {
         observer.unobserve(ref.current);
       }
     };
-  }, [threshold, delay, rootMargin]);
+  }, [threshold, delay, rootMargin, hasTriggered]);
 
   const fadeInStyle = {
     opacity: isVisible ? 1 : 0,
