@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { logoImage } from '../assets';
 
 const Header: React.FC = () => {
     const [activeItem, setActiveItem] = useState('PACIENTES');
     const [isPortalDropdownOpen, setIsPortalDropdownOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
 
     const navItems = [
         { name: 'INÍCIO', href: 'https://investmoneysa.com.br/' },
@@ -40,6 +42,9 @@ const Header: React.FC = () => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsPortalDropdownOpen(false);
             }
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+                setIsMobileMenuOpen(false);
+            }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
@@ -49,11 +54,11 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <header className="bg-white shadow-sm">
+        <header className="bg-white shadow-sm relative">
             <div className="container mx-auto px-4 py-6">
-                <div className="flex items-center space-x-8 text-center justify-center">
+                <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <div className="flex items-center mb-2">
+                    <div className="flex items-center">
                         <a href="https://investmoneysa.com.br/" className="transition-transform hover:scale-105">
                             <img src={logoImage} alt="InvestMoney Logo" className="h-16" />
                         </a>
@@ -91,7 +96,7 @@ const Header: React.FC = () => {
                             
                             {/* Dropdown Menu */}
                             {isPortalDropdownOpen && (
-                                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                                     {portalItems.map((portal, index) => (
                                         <a 
                                             key={index}
@@ -115,11 +120,70 @@ const Header: React.FC = () => {
                     </nav>
                     
                     {/* Mobile Menu Button */}
-                    <button className="md:hidden">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    <div className="md:hidden" ref={mobileMenuRef}>
+                        <button 
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="p-2 rounded-md text-gray-600 hover:text-yellow-investmoney-400 transition-colors"
+                        >
+                            {isMobileMenuOpen ? (
+                                <X className="w-6 h-6" />
+                            ) : (
+                                <Menu className="w-6 h-6" />
+                            )}
+                        </button>
+                        
+                        {/* Mobile Dropdown Menu */}
+                        {isMobileMenuOpen && (
+                            <div className="absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-50">
+                                <div className="container mx-auto px-4 py-4">
+                                    {/* Navigation Items */}
+                                    <div className="space-y-2 mb-4">
+                                        {navItems.map((item) => (
+                                            <a 
+                                                key={item.name}
+                                                href={item.href}
+                                                onClick={() => {
+                                                    setActiveItem(item.name);
+                                                    setIsMobileMenuOpen(false);
+                                                }}
+                                                className={`block px-4 py-3 rounded-lg text-sm uppercase font-medium transition-colors ${
+                                                    activeItem === item.name 
+                                                        ? 'text-yellow-investmoney-400 bg-yellow-50' 
+                                                        : 'text-gray-investmoney-600 hover:text-yellow-investmoney-400 hover:bg-gray-50'
+                                                }`}
+                                            >
+                                                {item.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                    
+                                    {/* Portal Items */}
+                                    <div className="border-t border-gray-200 pt-4">
+                                        <h3 className="text-xs uppercase font-semibold text-gray-500 mb-2 px-4">Portais</h3>
+                                        <div className="space-y-2">
+                                            {portalItems.map((portal, index) => (
+                                                <a 
+                                                    key={index}
+                                                    href={portal.url}
+                                                    target={portal.url.startsWith('http') ? '_blank' : '_self'}
+                                                    rel={portal.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="block px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                                                >
+                                                    <div className="text-sm font-medium text-gray-800 group-hover:text-yellow-investmoney-500">
+                                                        {portal.name}
+                                                    </div>
+                                                    <div className="text-xs text-gray-500 mt-1">
+                                                        {portal.description}
+                                                    </div>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </header>

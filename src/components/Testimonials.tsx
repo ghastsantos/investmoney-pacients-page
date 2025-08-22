@@ -1,7 +1,10 @@
 import React from 'react';
 import { User, Star } from 'lucide-react';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const Testimonials: React.FC = () => {
+    const titleFade = useFadeIn({ delay: 200 });
+    const testimonialsContainerFade = useFadeIn({ delay: 400 });
     const testimonials = [
         {
             name: "Maria Silva",
@@ -34,7 +37,11 @@ const Testimonials: React.FC = () => {
             {/* Testimonials Section */}
             <section className="py-20 px-4">
                 <div className="container mx-auto max-w-6xl">
-                    <div className="text-center mb-16">
+                    <div 
+                        ref={titleFade.ref}
+                        style={titleFade.style}
+                        className="text-center mb-16"
+                    >
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                             O que os pacientes de nossos clientes dizem
                         </h2>
@@ -44,7 +51,11 @@ const Testimonials: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 mb-16">
+                    <div 
+                        ref={testimonialsContainerFade.ref}
+                        style={testimonialsContainerFade.style}
+                        className="grid md:grid-cols-3 gap-8 mb-16"
+                    >
                         {testimonials.map((testimonial, index) => {
                             const IconComponent = testimonial.icon;
                             return (

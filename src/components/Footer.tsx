@@ -1,11 +1,17 @@
 import React from 'react';
 import { Instagram, Facebook, Youtube, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 import { logoImage, reclameAqui, seloFooter } from '../assets';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const Footer: React.FC = () => {
+    const footerFade = useFadeIn({ delay: 200 });
     return (
         <footer className="bg-gray-50 py-16 px-4">
-            <div className="container mx-auto max-w-6xl">
+            <div 
+                ref={footerFade.ref}
+                style={footerFade.style}
+                className="container mx-auto max-w-6xl"
+            >
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     {/* Logo e Descrição */}
                     <div className="col-span-1 md:col-span-1">

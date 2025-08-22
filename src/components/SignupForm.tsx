@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { CheckCircle, X } from 'lucide-react';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const SignupForm: React.FC = () => {
+    const titleFade = useFadeIn({ delay: 200 });
+    const formFade = useFadeIn({ delay: 400 });
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -185,7 +188,11 @@ const SignupForm: React.FC = () => {
     return (
         <section id="cadastro" className="py-20 px-4 bg-gray-100">
             <div className="container mx-auto max-w-4xl">
-                <div className="text-center mb-12">
+                <div 
+                    ref={titleFade.ref}
+                    style={titleFade.style}
+                    className="text-center mb-12"
+                >
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-investmoney-600 mb-4">
                         Comece agora mesmo!
                     </h2>
@@ -194,7 +201,11 @@ const SignupForm: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+                <div 
+                    ref={formFade.ref}
+                    style={formFade.style}
+                    className="bg-white rounded-3xl shadow-2xl p-8 md:p-12"
+                >
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Check, Star, Users, BookOpen, MessageCircleHeart, Search } from 'lucide-react';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const Plans: React.FC = () => {
+    const titleFade = useFadeIn({ delay: 200 });
+    const freePlanFade = useFadeIn({ delay: 400 });
+    const premiumPlanFade = useFadeIn({ delay: 600 });
     const freePlan = {
         name: "Sem Plano",
         price: "R$ 0",
@@ -98,7 +102,11 @@ const Plans: React.FC = () => {
         <section id="planos" className="py-20 bg-gray-50">
             <div className="container mx-auto px-4 max-w-6xl">
                 {/* Header */}
-                <div className="text-center mb-16">
+                <div 
+                    ref={titleFade.ref}
+                    style={titleFade.style}
+                    className="text-center mb-16"
+                >
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                         Escolha o plano ideal para você
                     </h2>
@@ -110,8 +118,12 @@ const Plans: React.FC = () => {
 
                 {/* Plans Grid */}
                 <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <PlanCard plan={freePlan} isPopular={false} />
-                    <PlanCard plan={premiumPlan} isPopular={true} />
+                    <div ref={freePlanFade.ref} style={freePlanFade.style}>
+                        <PlanCard plan={freePlan} isPopular={false} />
+                    </div>
+                    <div ref={premiumPlanFade.ref} style={premiumPlanFade.style}>
+                        <PlanCard plan={premiumPlan} isPopular={true} />
+                    </div>
                 </div>
 
                 {/* Additional Benefits Section */}

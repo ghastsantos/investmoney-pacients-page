@@ -30,7 +30,6 @@ A página foi completamente redesenhada com foco em **conversão de leads** e **
 - **Plano Premium (R$ 29,90/mês)**: 
   - 🔍 Plataforma exclusiva para buscar clínicas
   - 👨‍⚕️ Informações detalhadas dos doutores
-  - 💰 Cashback de 2% em cada boleto pago
   - 📧 Newsletter exclusiva com dicas de saúde
   - 📚 Acesso ao blog exclusivo
   - 🎯 Suporte prioritário
@@ -97,15 +96,8 @@ A página foi completamente redesenhada com foco em **conversão de leads** e **
 
 4. **Acesse no navegador:**
    ```
-   http://localhost:5173
+   http://localhost:(sua porta)
    ```
-
-### **Build para Produção**
-```bash
-npm run build
-# ou
-yarn build
-```
 
 ## 📁 Estrutura do Projeto
 
@@ -133,19 +125,6 @@ src/
 └── main.tsx             # Ponto de entrada
 ```
 
-## 🎨 Design System
-
-### **Cores Principais**
-- **Amarelo Investmoney**: `#fbbf24` (Cor da marca)
-- **Cinza**: `#374151` (Textos principais)
-- **Branco**: `#ffffff` (Backgrounds)
-
-### **Componentes Reutilizáveis**
-- **Botões**: Estilo consistente com hover effects
-- **Cards**: Design glassmorphism
-- **Formulários**: Validação visual integrada
-- **Modais**: Feedback de sucesso elegante
-
 ## 📊 Funcionalidades de Conversão
 
 ### **Lead Capture Otimizado**
@@ -165,22 +144,14 @@ src/
 ## 🔗 Links Importantes
 
 - **Site Original**: [InvestMoney SA](https://investmoneysa.com.br/)
-- **Portal Clínicas**: [Sistema para Clínicas](https://websec.investmoney.aplicativo.digital/)
-- **Portal Investidor**: [Área do Investidor](https://investmoney.debenture.digital/acesso/entrar)
 
 ## 👨‍💻 Desenvolvido por
 
 **Gastão Santos**
 - GitHub: [@ghastsantos](https://github.com/ghastsantos)
-- LinkedIn: [Gastão Santos](https://linkedin.com/in/gastao-santos)
+- LinkedIn: [Gastão Santos](https://linkedin.com/in/gastaoesb2606)
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
----
 
 <div align="center">
-  <p>🏥 Democratizando o acesso a tratamentos de saúde e estética</p>
   <p>💼 Desenvolvido com ❤️ para InvestMoney SA</p>
 </div>

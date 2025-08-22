@@ -1,8 +1,12 @@
 import { gifSmile } from '@/assets';
 import React from 'react';
 import { DollarSign, CheckCircle, MapPin, Heart } from 'lucide-react';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const WhyChooseUs: React.FC = () => {
+    const titleFade = useFadeIn({ delay: 200 });
+    const benefitsFade = useFadeIn({ delay: 400 });
+    const imageFade = useFadeIn({ delay: 600 });
     const benefits = [
         {
             icon: DollarSign,
@@ -53,7 +57,11 @@ const WhyChooseUs: React.FC = () => {
                     </div>
 
                     {/* Conteúdo à direita */}
-                    <div className="space-y-6">
+                    <div 
+                        ref={titleFade.ref}
+                        style={titleFade.style}
+                        className="space-y-6"
+                    >
                         {/* Badge */}
                         <div className="inline-block">
                             <span className="text-yellow-investmoney-400 text-sm font-semibold uppercase tracking-wide">
@@ -86,7 +94,11 @@ const WhyChooseUs: React.FC = () => {
                         </div>
 
                         {/* Lista de benefícios */}
-                        <div className="space-y-4">
+                        <div 
+                            ref={benefitsFade.ref}
+                            style={benefitsFade.style}
+                            className="space-y-4"
+                        >
                             {benefits.map((benefit, index) => {
                                 const IconComponent = benefit.icon;
                                 return (
